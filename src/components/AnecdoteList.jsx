@@ -17,7 +17,7 @@ export default function AnecdoteList() {
 
     return (
         <>
-            {anecdotes.filter( (anecdote)=> anecdote.content.includes(filterText) ).map(anecdote =>
+            {anecdotes.filter( (anecdote)=> anecdote?.content?.includes(filterText) ).map(anecdote =>
                 <div key={anecdote.id}>
                     <div>
                         {anecdote.content}
