@@ -5,6 +5,7 @@ import { setNotificationText, setNotificationVisibility } from '../reducers/noti
 
 export default function AnecdoteList() {
     const anecdotes = useSelector(state => state.anecdotes)
+    const filterText = useSelector(state => state.filter)
     const dispatch = useDispatch()
 
     const onButtonClick = (anecdote) =>{
@@ -16,7 +17,7 @@ export default function AnecdoteList() {
 
     return (
         <>
-            {anecdotes.map(anecdote =>
+            {anecdotes.filter( (anecdote)=> anecdote.content.includes(filterText) ).map(anecdote =>
                 <div key={anecdote.id}>
                     <div>
                         {anecdote.content}
