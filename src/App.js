@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import AnecdoteForm from './components/AnecdoteForm'
 import AnecdoteList from './components/AnecdoteList'
-import Notification from './components/Notification'
 import Filter from './components/Fillter'
+import Notification from './components/Notification'
 import { initAnecdotes } from './reducers/anecdoteReducer'
-import anecdotesService from './services/anecdotes'
 
 const App = () => {
 
@@ -13,15 +12,14 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    anecdotesService
-      .getAll().then(anecdotes => dispatch(initAnecdotes(anecdotes)))
+    dispatch(initAnecdotes())
   }, [dispatch])
-  
+
   return (
     <div>
-      { isVisible &&  <Notification />}
+      {isVisible && <Notification />}
       <h2>Anecdotes</h2>
-      <Filter/>
+      <Filter />
       <AnecdoteList />
       <AnecdoteForm />
     </div>
