@@ -26,9 +26,11 @@ export const setNotificationVisibility = (isVisible = false) => ({
     isVisible
 })
 
+let timeoutID
 
 export const setNotification = (anecdote, time) => (dispatch) => {
+    if (timeoutID) clearTimeout(timeoutID)
     dispatch(setNotificationText(`you voted ${anecdote.content}`))
     dispatch(setNotificationVisibility(true))
-    setTimeout(() => dispatch(setNotificationVisibility(false)), time * 1000)
+    timeoutID = setTimeout(() => dispatch(setNotificationVisibility(false)), time * 1000)
 }
